@@ -1,6 +1,10 @@
 # Schemify (консольная версия)
 
-Блок-схемы по ГОСТ 19.701-90 из кода на C.
+<p align="center">
+  <img width="256" height="256" alt="Schemify" src="https://github.com/user-attachments/assets/8b3ae53b-de89-4395-b1a9-31a13ac444da" />
+</p>
+
+<!-- <br clear="left" /> -->
 
 ## Установка и запуск
 Скачайте zip-архив и распакуйте его в любом удобном месте либо клонируйте репозиторий в нужную директорию.
