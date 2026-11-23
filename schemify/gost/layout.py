@@ -24,6 +24,7 @@ from .options import Options
 G = 28          # вертикальный зазор между соседними блоками
 JD = 24         # от точки входа цикла до его заголовка
 SIDE = 32       # боковой зазор между блоком и вертикальной линией
+JM = 6          # глубина слияния обратной стрелки цикла (0 < JM < JD):
 LANE = 26       # расстояние между соседними боковыми полосами
 MERGE = 24      # запас на слияние линий под ветвями
 GB = 22         # запас под телом цикла для обратной стрелки
@@ -345,9 +346,9 @@ def make_while(head: Head, body: Frag | None, post: Frag | None, o: Options,
     if need_back:
         xb = left.alloc()
         if falls:
-            out.edge((0, y_end), (0, y_end + GB), (xb, y_end + GB), (xb, JD / 2), (0, JD / 2))
+            out.edge((0, y_end), (0, y_end + GB), (xb, y_end + GB), (xb, JM), (0, JM))
         else:
-            out.edge((xb, max(j.y for j in to_head_l)), (xb, JD / 2), (0, JD / 2))
+            out.edge((xb, max(j.y for j in to_head_l)), (xb, JM), (0, JM))
 
     out.edge((hw / 2, cy), (nx, cy), (nx, ye), (0, ye))     # линия «Нет»
     if labels:
@@ -364,7 +365,7 @@ def make_while(head: Head, body: Frag | None, post: Frag | None, o: Options,
         out.edge((j.x, j.y), (xb, j.y))
     rc = right.alloc() if to_head_r else None
     for j in to_head_r:
-        out.edge((j.x, j.y), (rc, j.y), (rc, JD / 2), (0, JD / 2))
+        out.edge((j.x, j.y), (rc, j.y), (rc, JM), (0, JM))
 
     # continue к блоку обновления for: свои полосы
     lc = left.alloc() if any(j.x <= 0 for j in to_post) else None
